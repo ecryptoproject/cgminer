@@ -1,0 +1,31 @@
+Update your Pi before getting started with
+sudo apt-get update
+
+Install dependencies:
+
+sudo apt-get install libusb-1.0-0-dev libusb-1.0-0
+libcurl4-openssl-dev libncurses5-dev libudev-dev screen
+libtool automake pkg-config libjansson-dev
+
+Download & Install a version of cgminer designed specifically to work with the Antminer on Pi:
+git clone https://github.com/AdvancedStyle/cgminer
+cd cgminer
+sudo ./autogen.sh
+sudo ./configure --enable-bmsc
+sudo make
+
+Plug in the Antminer:
+Plug in your Antminer to the powered USB hub, and then run the following to verify that there is a com device for your USB ASIC:
+ls /dev/*USB*
+
+Start Mining:
+sudo ./cgminer --bmsc-options 115200:20 -o sha256.eu.nicehash.com:3334 -u Worker -p x --bmsc-freq 0781 --api-allow W:0/0 --api-listen
+
+Setting these up to auto-start when the Pi starts:
+sudo nano /etc/rc.local
+
+cd /home/pi/PiMinerSimple
+python PiMinerSimple.py &amp;
+cd ..
+nohup ./cgminer --bmsc-options 115200:20 -o sha256.eu.nicehash.com:3334 -u Worker -p x --bmsc-freq 0781 --api-allow W:0/0 --api-listen &amp;
+
