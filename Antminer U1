@@ -1,0 +1,19 @@
+Installation:
+sudo apt-get update
+
+sudo apt-get install libusb-1.0-0-dev libusb-1.0-0 libcurl4-openssl-dev libncurses5-dev libudev-dev screen libtool automake pkg-config libjansson-dev
+
+git clone https://github.com/AdvancedStyle/cgminer
+
+cd cgminer
+
+sudo ./autogen.sh
+
+sudo ./configure --enable-bmsc
+
+sudo make
+
+—
+Mining starten:
+./cgminer --bmsc-options 115200:20 -o Pool -u User -p Passwort --bmsc-freq 0781 --api-allow W:0/0 --api-listen
+-
